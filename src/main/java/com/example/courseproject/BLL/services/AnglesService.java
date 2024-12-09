@@ -1,9 +1,9 @@
-package com.example.courseproject.BLL;
+package com.example.courseproject.BLL.services;
 
-public class AnglesBLL {
+public class AnglesService {
     double height;
     int sleeperWidth;
-    public AnglesBLL(double height,int sleeperWidth){
+    public AnglesService(double height, int sleeperWidth){
         this.height = height;
         this.sleeperWidth = sleeperWidth;
     }

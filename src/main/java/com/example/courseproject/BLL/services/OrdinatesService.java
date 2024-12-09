@@ -1,11 +1,11 @@
-package com.example.courseproject.BLL;
+package com.example.courseproject.BLL.services;
 
 import com.example.courseproject.BLL.Entities.RailwayEntity;
 import com.example.courseproject.BLL.Entities.ZmaxEntity;
-import com.example.courseproject.DAL.OrdinatesCRUD.OrdinatesCRUD;
+import com.example.courseproject.DAL.repositories.impl.OrdinatesRepositoryImpl;
 import com.example.courseproject.GUI.HelloController;
 
-public class OrdinatesBLL extends HelloController {
+public class OrdinatesService extends HelloController {
     //
     //для расчёта Sнп
     double Lsh;//в зависимости от эпюр укладки
@@ -35,7 +35,7 @@ public class OrdinatesBLL extends HelloController {
     private RailwayEntity railwayEntity;
     private ZmaxEntity zmax;
 
-    public OrdinatesBLL(RailwayEntity railwayEntity, ZmaxEntity zmax, double v){
+    public OrdinatesService(RailwayEntity railwayEntity, ZmaxEntity zmax, double v){
         this.railwayEntity = railwayEntity;
         this.zmax = zmax;
         this.V = v;
@@ -45,9 +45,9 @@ public class OrdinatesBLL extends HelloController {
         setE();
         setY();
         setA0();
-        OrdinatesCRUD ordinatesCRUD = new OrdinatesCRUD(railwayEntity);
-        U = ordinatesCRUD.readU();
-        K = ordinatesCRUD.readK();
+        OrdinatesRepositoryImpl ordinatesRepositoryImpl = new OrdinatesRepositoryImpl(railwayEntity);
+        U = ordinatesRepositoryImpl.readU();
+        K = ordinatesRepositoryImpl.readK();
     }
     public Double getNu(){
         return getPcp()/getPekv();

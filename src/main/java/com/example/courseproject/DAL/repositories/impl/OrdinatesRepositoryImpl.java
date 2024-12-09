@@ -1,18 +1,20 @@
-package com.example.courseproject.DAL.OrdinatesCRUD;
+package com.example.courseproject.DAL.repositories.impl;
 
 
 import com.example.courseproject.BLL.Entities.RailwayEntity;
 import com.example.courseproject.DAL.DBConnectivity.DB;
+import com.example.courseproject.DAL.repositories.OrdinatesRepository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class OrdinatesCRUD extends DB {
-    private RailwayEntity railwayEntity;
-    public OrdinatesCRUD(RailwayEntity railwayEntity){
+public class OrdinatesRepositoryImpl extends DB implements OrdinatesRepository {
+    private final RailwayEntity railwayEntity;
+    public OrdinatesRepositoryImpl(RailwayEntity railwayEntity){
         this.railwayEntity = railwayEntity;
     }
+    @Override
     public int readU(){
         String insert = "select U from railstype where railstype = '"+ railwayEntity.getRailsTypeForDB() +
                 "' and epures = '"+ railwayEntity.getEpures()+"' and sleepersType = '"+ railwayEntity.getSleepersTypeForDB() +
@@ -30,6 +32,7 @@ public class OrdinatesCRUD extends DB {
         }
         return U;
     }
+    @Override
     public double readK(){
         String insert = "select K from railstype where railstype = '"+ railwayEntity.getRailsTypeForDB() +
                 "' and epures = '"+ railwayEntity.getEpures()+"' and sleepersType = '"+ railwayEntity.getSleepersTypeForDB() +
@@ -46,4 +49,5 @@ public class OrdinatesCRUD extends DB {
         }
         return K;
     }
+
 }

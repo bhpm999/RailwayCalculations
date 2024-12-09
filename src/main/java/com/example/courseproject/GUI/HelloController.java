@@ -1,13 +1,13 @@
 package com.example.courseproject.GUI;
 
 
-import com.example.courseproject.BLL.AnglesBLL;
+import com.example.courseproject.BLL.services.AnglesService;
 import com.example.courseproject.BLL.Entities.RailwayEntity;
 import com.example.courseproject.BLL.Entities.ZmaxEntity;
 import com.example.courseproject.BLL.Enums.Ballast;
 import com.example.courseproject.BLL.Enums.Rails;
 import com.example.courseproject.BLL.Enums.Sleepers;
-import com.example.courseproject.BLL.OrdinatesBLL;
+import com.example.courseproject.BLL.services.OrdinatesService;
 import com.example.courseproject.GUI.Interfaces.ElementsVisibility;
 import javafx.collections.FXCollections;
 import javafx.scene.control.*;
@@ -71,7 +71,7 @@ public class HelloController implements ElementsVisibility {
             getRailwayInstance();
             RailwayEntity railwayEntity = new RailwayEntity(railsType,epureYkladkiCombobox.getValue(),sleepersType,ballastType);
             ZmaxEntity zmax = new ZmaxEntity(getV());
-            OrdinatesBLL nu = new OrdinatesBLL(railwayEntity,zmax,getV());
+            OrdinatesService nu = new OrdinatesService(railwayEntity,zmax,getV());
             ordinateResultText.setText(nu.getNu().toString());
             ordinateResultText.setVisible(true);
         }else{
@@ -110,8 +110,8 @@ public class HelloController implements ElementsVisibility {
         ));
     }
     public void setCalculateAngleButton(){
-        AnglesBLL anglesBLL = new AnglesBLL(getHeight(),getWidth());
-        angleResultText.setText( String.valueOf(anglesBLL.angleResult()));
+        AnglesService anglesService = new AnglesService(getHeight(),getWidth());
+        angleResultText.setText( String.valueOf(anglesService.angleResult()));
         angleResultText.setVisible(true);
     }
     public double getHeight(){

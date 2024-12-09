@@ -18,12 +18,10 @@ module com.example.courseproject {
     opens com.example.courseproject.BLL.Entities to javafx.fxml;
     exports com.example.courseproject.DAL.DBConnectivity;
     opens com.example.courseproject.DAL.DBConnectivity to javafx.fxml;
-    exports com.example.courseproject.DAL.OrdinatesCRUD;
-    opens com.example.courseproject.DAL.OrdinatesCRUD to javafx.fxml;
-    exports com.example.courseproject.DAL.AnglesCRUD;
-    opens com.example.courseproject.DAL.AnglesCRUD to javafx.fxml;
     exports com.example.courseproject.GUI;
     opens com.example.courseproject.GUI to javafx.fxml;
-    exports com.example.courseproject.BLL;
-    opens com.example.courseproject.BLL to javafx.fxml;
+    exports com.example.courseproject.DAL.repositories.impl;
+    opens com.example.courseproject.DAL.repositories.impl to javafx.fxml;
+    exports com.example.courseproject.BLL.services;
+    opens com.example.courseproject.BLL.services to javafx.fxml;
 }
