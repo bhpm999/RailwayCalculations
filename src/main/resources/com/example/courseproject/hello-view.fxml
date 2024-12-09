@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.shape.Polyline?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="homePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="820.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.courseproject.GUI.HelloController">
+   <children>
+      <AnchorPane id="workPane" fx:id="workAnchor" layoutX="151.0" layoutY="-3.0" prefHeight="432.0" prefWidth="669.0" style="-fx-background-color: cccccc;">
+         <children>
+            <Label id="forOrdinates" layoutX="23.0" layoutY="44.0" text="Введите значение V" visible="false" />
+            <Label id="forOrdinates" layoutX="24.0" layoutY="114.0" text="Тип шпал" visible="false" />
+            <RadioButton id="forOrdinates" fx:id="ironSleepersButton" layoutX="92.0" layoutY="101.0" mnemonicParsing="false" visible="false" />
+            <RadioButton id="forOrdinates" fx:id="woodenSleepersButton" layoutX="92.0" layoutY="127.0" mnemonicParsing="false" visible="false" />
+            <Label id="forOrdinates" layoutX="113.0" layoutY="101.0" text="Железобетонные" visible="false" />
+            <Label id="forOrdinates" layoutX="113.0" layoutY="127.0" text="Деревянные" visible="false" />
+            <Label id="forOrdinates" layoutX="24.0" layoutY="159.0" text="Тип рельс" visible="false" />
+            <Label id="forOrdinates" layoutX="173.0" layoutY="159.0" text="Эпюры укладки" visible="false" />
+            <Label id="forOrdinates" layoutX="354.0" layoutY="159.0" text="Род балласта" visible="false" />
+            <ComboBox id="forOrdinates" fx:id="typeOfRailsCombobox" layoutX="86.0" layoutY="155.0" onMouseClicked="#setTypeOfRailsCombobox" prefHeight="25.0" prefWidth="69.0" visible="false" />
+            <ComboBox id="forOrdinates" fx:id="epureYkladkiCombobox" layoutX="266.0" layoutY="155.0" onMouseClicked="#setEpureYkladkiCombobox" prefHeight="25.0" prefWidth="69.0" visible="false" />
+            <ComboBox id="forOrdinates" fx:id="typeOfBallastCombobox" layoutX="441.0" layoutY="155.0" onMouseClicked="#setTypeOfBallastCombobox" prefHeight="25.0" prefWidth="110.0" visible="false" />
+            <TextField id="forOrdinates" fx:id="vValueTextfield" layoutX="141.0" layoutY="40.0" prefHeight="25.0" prefWidth="55.0" promptText="V, км\ч" visible="false" />
+            <Text id="forOrdinates" layoutX="204.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="км\ч" visible="false" />
+            <Button id="forOrdinates" fx:id="calculateOrdinateButton" layoutX="14.0" layoutY="297.0" mnemonicParsing="false" onAction="#setCalculateOrdinateButton" text="Вычислить" visible="false" />
+            <Text id="forOrdinates" layoutX="102.0" layoutY="314.0" strokeType="OUTSIDE" strokeWidth="0.0" text="n =" visible="false" />
+            <Text id="forOrdinates" fx:id="ordinateResultText" layoutX="126.0" layoutY="314.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" />
+            <Label id="forAngles" layoutX="24.0" layoutY="30.0" mnemonicParsing="true" text="Введите высоту h,см от земляного полотна до нижней постели шпалы" />
+            <TextField id="forAngles" fx:id="heightTextfield" layoutX="29.0" layoutY="52.0" prefHeight="25.0" prefWidth="96.0" promptText="h, см" />
+            <Polyline id="forAngles" fill="#d36110" layoutX="301.0" layoutY="246.0" points="-50.0, -40.0, 50.0, -40.0, 1.0, -25.0, -50.0, -40.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+            <Polyline id="forAngles" fill="#d36110" layoutX="320.0" layoutY="130.0" points="30.0, 0.0, 30.0, 76.0, -68.0, 76.0, -68.0, 0.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+            <Polyline id="forAngles" fill="#d36110" layoutX="301.0" layoutY="67.0" points="-27.0, 37.0, 25.0, 37.0, 49.0, 63.0, -49.0, 63.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+            <Line id="forAngles" endX="100.0" layoutX="301.0" layoutY="167.0" startX="-100.0" />
+            <Line id="forAngles" endX="100.0" layoutX="301.0" layoutY="297.0" startX="-100.0" />
+            <Line id="forAngles" endX="74.0" endY="60.5" layoutX="227.0" layoutY="236.0" startX="25.0" startY="-68.0" />
+            <Line id="forAngles" endX="-127.0" endY="-76.0" layoutX="477.0" layoutY="244.0" startX="-175.29290771484375" startY="52.5" />
+            <Polygon id="forAngles" fill="DODGERBLUE" layoutX="87.0" layoutY="231.0" points="214.0, 66.0, 165.0, -63.0, 164.29290771484375, 66.20709228515625" stroke="BLACK" strokeType="INSIDE" />
+            <Text id="forAngles" layoutX="210.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="угол a" />
+            <Text id="forAngles" layoutX="193.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Высота h" />
+            <Text id="forAngles" layoutX="282.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Шпала" />
+            <Text id="forAngles" layoutX="260.0" layoutY="314.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Земляное полотно" />
+            <Text id="forAngles" layoutX="422.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Балласт" />
+            <Button id="forAngles" fx:id="calculateAngleButton" onAction="#setCalculateAngleButton" layoutX="29.0" layoutY="358.0" mnemonicParsing="false" text="Вычислить" />
+            <Text id="forAngles" layoutX="122.0" layoutY="375.0" strokeType="OUTSIDE" strokeWidth="0.0" text="a = " />
+            <Text id="forAngles" fx:id="angleResultText" layoutX="144.0" layoutY="375.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" />
+            <Text id="forAngles" layoutX="26.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ширина шпалы, см" />
+            <ComboBox id="forAngles" fx:id="sleeperWidthCombobox" layoutX="27.0" layoutY="123.0" onMouseClicked="#setSleeperWidthCombobox" prefHeight="25.0" prefWidth="96.0" />
+         </children>
+      </AnchorPane>
+      <Button fx:id="forOrdinatesButton" layoutX="14.0" layoutY="46.0" mnemonicParsing="false" onAction="#setForOrdinatesButton" prefHeight="25.0" prefWidth="130.0" text="Ординаты поперечных сил" />
+      <Button fx:id="forAnglesButton" layoutX="14.0" layoutY="91.0" mnemonicParsing="false" onAction="#setForAnglesButton" prefHeight="25.0" prefWidth="130.0" text="Вертикальный угол" />
+   </children>
+</AnchorPane>
