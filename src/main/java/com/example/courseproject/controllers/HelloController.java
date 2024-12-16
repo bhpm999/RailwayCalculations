@@ -1,14 +1,16 @@
-package com.example.courseproject.GUI;
+package com.example.courseproject.controllers;
 
 
-import com.example.courseproject.BLL.services.AnglesService;
-import com.example.courseproject.BLL.Entities.RailwayEntity;
-import com.example.courseproject.BLL.Entities.ZmaxEntity;
-import com.example.courseproject.BLL.Enums.Ballast;
-import com.example.courseproject.BLL.Enums.Rails;
-import com.example.courseproject.BLL.Enums.Sleepers;
-import com.example.courseproject.BLL.services.OrdinatesService;
+import com.example.courseproject.GUI.Alerts;
+import com.example.courseproject.services.AnglesService;
+import com.example.courseproject.domain.Entities.RailwayEntity;
+import com.example.courseproject.domain.Entities.ZmaxEntity;
+import com.example.courseproject.domain.Enums.Ballast;
+import com.example.courseproject.domain.Enums.Rails;
+import com.example.courseproject.domain.Enums.Sleepers;
+import com.example.courseproject.services.OrdinatesService;
 import com.example.courseproject.GUI.Interfaces.ElementsVisibility;
+import com.example.courseproject.statics.STATICS;
 import javafx.collections.FXCollections;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;

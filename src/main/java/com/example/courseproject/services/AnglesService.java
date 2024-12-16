@@ -1,4 +1,4 @@
-package com.example.courseproject.BLL.services;
+package com.example.courseproject.services;
 
 public class AnglesService {
     double height;

@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Polyline?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="homePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="820.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.courseproject.GUI.HelloController">
+<AnchorPane id="homePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="820.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.courseproject.controllers.HelloController">
    <children>
       <AnchorPane id="workPane" fx:id="workAnchor" layoutX="151.0" layoutY="-3.0" prefHeight="432.0" prefWidth="669.0" style="-fx-background-color: cccccc;">
          <children>

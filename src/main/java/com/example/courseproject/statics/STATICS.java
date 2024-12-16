@@ -1,6 +1,6 @@
-package com.example.courseproject.GUI;
+package com.example.courseproject.statics;
 
-import com.example.courseproject.BLL.Enums.Rails;
+import com.example.courseproject.domain.Enums.Rails;
 
 import java.util.Arrays;
 import java.util.List;

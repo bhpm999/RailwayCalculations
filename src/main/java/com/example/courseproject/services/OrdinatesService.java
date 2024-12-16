@@ -1,11 +1,10 @@
-package com.example.courseproject.BLL.services;
+package com.example.courseproject.services;
 
-import com.example.courseproject.BLL.Entities.RailwayEntity;
-import com.example.courseproject.BLL.Entities.ZmaxEntity;
-import com.example.courseproject.DAL.repositories.impl.OrdinatesRepositoryImpl;
-import com.example.courseproject.GUI.HelloController;
+import com.example.courseproject.domain.Entities.RailwayEntity;
+import com.example.courseproject.domain.Entities.ZmaxEntity;
+import com.example.courseproject.repositories.impl.OrdinatesRepositoryImpl;
 
-public class OrdinatesService extends HelloController {
+public class OrdinatesService {
     //
     //для расчёта Sнп
     double Lsh;//в зависимости от эпюр укладки

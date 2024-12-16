@@ -1,6 +1,7 @@
-package com.example.courseproject.GUI;
+package com.example.courseproject;
 
 
+import com.example.courseproject.util.HibernateUtil;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -21,7 +22,7 @@ public class HelloApplication extends Application {
 
 
     public static void main(String[] args) {
-
+        HibernateUtil.connect();
         launch();
     }
 }

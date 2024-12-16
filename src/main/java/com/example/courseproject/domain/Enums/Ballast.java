@@ -1,4 +1,4 @@
-package com.example.courseproject.BLL.Enums;
+package com.example.courseproject.domain.Enums;
 
 public enum Ballast {
     sheben,gravii,pesok

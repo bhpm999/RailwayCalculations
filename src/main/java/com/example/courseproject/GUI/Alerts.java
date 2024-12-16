@@ -14,7 +14,7 @@ public class Alerts {
         blankData.show();
     }
     public static void notExistAlert(){
-        Alert blankData = new Alert(Alert.AlertType.ERROR,"Пользователь с таким логином или паролем не существует", ButtonType.OK);
+        Alert blankData = new Alert(Alert.AlertType.ERROR,"Рельсового пути с такими характеристиками не существует", ButtonType.OK);
         blankData.setTitle("Неверные данные");
         blankData.show();
     }
