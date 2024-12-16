@@ -35,4 +35,5 @@ module com.example.courseproject {
     opens com.example.courseproject.statics to javafx.fxml;
     exports com.example.courseproject.controllers;
     opens com.example.courseproject.controllers to javafx.fxml;
+    exports com.example.courseproject.exeptions;
 }

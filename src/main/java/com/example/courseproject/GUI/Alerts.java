@@ -8,8 +8,8 @@ import java.util.concurrent.CancellationException;
 
 public class Alerts {
 
-    public static void existAlert(){
-        Alert blankData = new Alert(Alert.AlertType.ERROR,"Пользователь с таким логином или паролем уже существует", ButtonType.OK);
+    public static void incorrectData(){
+        Alert blankData = new Alert(Alert.AlertType.ERROR,"Некорректно введённые данные", ButtonType.OK);
         blankData.setTitle("Неверные данные");
         blankData.show();
     }

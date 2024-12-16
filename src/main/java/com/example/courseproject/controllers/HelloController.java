@@ -2,6 +2,7 @@ package com.example.courseproject.controllers;
 
 
 import com.example.courseproject.GUI.Alerts;
+import com.example.courseproject.exeptions.IncorrectDataException;
 import com.example.courseproject.services.AnglesService;
 import com.example.courseproject.domain.Entities.RailwayEntity;
 import com.example.courseproject.domain.Entities.ZmaxEntity;
@@ -15,6 +16,8 @@ import javafx.collections.FXCollections;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+
+import java.util.Objects;
 
 public class HelloController implements ElementsVisibility {
 
@@ -68,16 +71,24 @@ public class HelloController implements ElementsVisibility {
         ));
     }
     public void setCalculateOrdinateButton(){
-        if(Double.parseDouble(vValueTextfield.getText())>0)
-        {
-            getRailwayInstance();
-            RailwayEntity railwayEntity = new RailwayEntity(railsType,epureYkladkiCombobox.getValue(),sleepersType,ballastType);
-            ZmaxEntity zmax = new ZmaxEntity(getV());
-            OrdinatesService nu = new OrdinatesService(railwayEntity,zmax,getV());
-            ordinateResultText.setText(nu.getNu().toString());
-            ordinateResultText.setVisible(true);
-        }else{
-            System.out.println("!");
+        try {
+            checkValues();
+            if (Double.parseDouble(vValueTextfield.getText()) > 0) {
+                getRailwayInstance();
+                RailwayEntity railwayEntity = new RailwayEntity(railsType, epureYkladkiCombobox.getValue(), sleepersType, ballastType);
+                ZmaxEntity zmax = new ZmaxEntity(getV());
+                OrdinatesService nu = new OrdinatesService(railwayEntity, zmax, getV());
+                ordinateResultText.setText(nu.getNu().toString());
+                ordinateResultText.setVisible(true);
+            } else {
+                throw new IncorrectDataException();
+            }
+        }catch (NullPointerException e){
+            Alerts.blankDataAlert();
+        } catch (IncorrectDataException ignored) {
+
+        }catch (NumberFormatException e){
+            Alerts.incorrectData();
         }
     }
     public void getRailwayInstance(){
@@ -130,5 +141,13 @@ public class HelloController implements ElementsVisibility {
             w = (int)sleeperWidthCombobox.getValue();
         }catch (NullPointerException e){Alerts.blankDataAlert();}
         return w;
+    }
+    public void checkValues(){
+            if(Objects.equals(vValueTextfield.getText(), "") ||
+            typeOfRailsCombobox.getValue() == null ||
+            typeOfBallastCombobox.getValue() == null ||
+            epureYkladkiCombobox.getValue() == null ||
+                    !ironSleepersButton.isSelected() && !woodenSleepersButton.isSelected())
+                throw new NullPointerException();
     }
 }
