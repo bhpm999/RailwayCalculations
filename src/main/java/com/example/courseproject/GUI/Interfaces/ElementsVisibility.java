@@ -20,18 +20,4 @@ public interface ElementsVisibility {
                 element.setVisible(false);
         }
     }
-
-    default void setVisibility(List<AnchorPane> anchorPanes, String user){
-        for (AnchorPane anchorPane: anchorPanes) {
-            ObservableList<Node> adminPanelElements = FXCollections.observableArrayList();
-            adminPanelElements.addAll(anchorPane.getChildren());
-            for (Node element: adminPanelElements) {
-                if(Objects.equals(element.getId(), user) || Objects.equals(element.getId(),"systemElement")){
-                    element.setVisible(true);
-                }
-                else
-                    element.setVisible(false);
-            }
-        }
-    }
 }

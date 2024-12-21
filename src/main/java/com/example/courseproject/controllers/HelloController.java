@@ -5,7 +5,6 @@ import com.example.courseproject.GUI.Alerts;
 import com.example.courseproject.exeptions.IncorrectDataException;
 import com.example.courseproject.services.AnglesService;
 import com.example.courseproject.domain.Entities.RailwayEntity;
-import com.example.courseproject.domain.Entities.ZmaxEntity;
 import com.example.courseproject.domain.Enums.Ballast;
 import com.example.courseproject.domain.Enums.Rails;
 import com.example.courseproject.domain.Enums.Sleepers;
@@ -13,7 +12,10 @@ import com.example.courseproject.services.OrdinatesService;
 import com.example.courseproject.GUI.Interfaces.ElementsVisibility;
 import com.example.courseproject.statics.STATICS;
 import javafx.collections.FXCollections;
+import javafx.event.EventHandler;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
@@ -38,19 +40,42 @@ public class HelloController implements ElementsVisibility {
     public TextField heightTextfield;
     public Button calculateAngleButton;
     public Text angleResultText;
-    public ComboBox sleeperWidthCombobox;
+    public ComboBox<Integer> sleeperWidthCombobox;
+    public Text forceResultText;
     ToggleGroup toggleGroup = new ToggleGroup();
+    EventHandler<KeyEvent> enterEvent;
 
     public void initialize(){
         woodenSleepersButton.setToggleGroup(toggleGroup);
         ironSleepersButton.setToggleGroup(toggleGroup);
+        vValueTextfield.requestFocus();
+        heightTextfield.requestFocus();
 
+
+    }
+    private EventHandler<KeyEvent> setEnterEvent(Button button){
+        enterEvent = keyEvent -> {
+            if(keyEvent.getCode() == KeyCode.ENTER)
+                button.fire();
+        };
+        return enterEvent;
     }
     public void setForOrdinatesButton(){
         setVisibility(workAnchor,"forOrdinates");
+        ordinateResultText.setVisible(false);
+        forceResultText.setVisible(false);
+        vValueTextfield.requestFocus();
+        if(enterEvent!=null)
+            workAnchor.removeEventFilter(KeyEvent.KEY_PRESSED,enterEvent);
+        workAnchor.addEventFilter(KeyEvent.KEY_PRESSED,setEnterEvent(calculateOrdinateButton));
     }
     public void setForAnglesButton(){
         setVisibility(workAnchor,"forAngles");
+        angleResultText.setVisible(false);
+        heightTextfield.requestFocus();
+        if(enterEvent!=null)
+            workAnchor.removeEventFilter(KeyEvent.KEY_PRESSED, enterEvent);
+        workAnchor.addEventFilter(KeyEvent.KEY_PRESSED, setEnterEvent(calculateAngleButton));
     }
 
     //
@@ -72,26 +97,25 @@ public class HelloController implements ElementsVisibility {
     }
     public void setCalculateOrdinateButton(){
         try {
-            checkValues();
-            if (Double.parseDouble(vValueTextfield.getText()) > 0) {
-                getRailwayInstance();
-                RailwayEntity railwayEntity = new RailwayEntity(railsType, epureYkladkiCombobox.getValue(), sleepersType, ballastType);
-                ZmaxEntity zmax = new ZmaxEntity(getV());
-                OrdinatesService nu = new OrdinatesService(railwayEntity, zmax, getV());
-                ordinateResultText.setText(nu.getNu().toString());
-                ordinateResultText.setVisible(true);
-            } else {
+            checkOrdinateValues();
+            if(getV()<0)
                 throw new IncorrectDataException();
-            }
+            getRailwayInstance();
+            RailwayEntity railwayEntity = new RailwayEntity(railsType, epureYkladkiCombobox.getValue(), sleepersType, ballastType);
+            OrdinatesService ordinatesService = new OrdinatesService(railwayEntity, getV());
+            String nu = String.format("%.2f",ordinatesService.getNuq());
+            String Q = String.format("%.0f, Н",ordinatesService.getQ());
+            ordinateResultText.setText(nu);
+            forceResultText.setText(Q);
+            ordinateResultText.setVisible(true);
+            forceResultText.setVisible(true);
         }catch (NullPointerException e){
             Alerts.blankDataAlert();
-        } catch (IncorrectDataException ignored) {
-
-        }catch (NumberFormatException e){
+        } catch (IncorrectDataException | NumberFormatException e) {
             Alerts.incorrectData();
         }
     }
-    public void getRailwayInstance(){
+    private void getRailwayInstance(){
         switch (typeOfRailsCombobox.getValue()){
             case "P50" -> railsType = Rails.P50;
             case "P65" -> railsType = Rails.P65;
@@ -109,8 +133,8 @@ public class HelloController implements ElementsVisibility {
             sleepersType = Sleepers.ironSleepers;
         }
     }
-    public double getV(){
-        return Double.parseDouble(vValueTextfield.getText());
+    private double getV(){
+            return Double.parseDouble(vValueTextfield.getText());
     }
     //
     //
@@ -123,31 +147,38 @@ public class HelloController implements ElementsVisibility {
         ));
     }
     public void setCalculateAngleButton(){
-        AnglesService anglesService = new AnglesService(getHeight(),getWidth());
-        angleResultText.setText( String.valueOf(anglesService.angleResult()));
-        angleResultText.setVisible(true);
-    }
-    public double getHeight(){
-        double h = Double.parseDouble(heightTextfield.getText());
-
-        if(h<30){
-            Alerts.blankDataAlert();
-        }
-        return h;
-    }
-    public int getWidth(){
-        int w = 0;
         try {
-            w = (int)sleeperWidthCombobox.getValue();
-        }catch (NullPointerException e){Alerts.blankDataAlert();}
-        return w;
+            checkAngleValues();
+            if(getHeight()<30)
+                throw new IncorrectDataException();
+
+            AnglesService anglesService = new AnglesService(getHeight(), getWidth());
+            String angle = String.format("%.2f°",anglesService.angleResult());
+            angleResultText.setText(angle);
+            angleResultText.setVisible(true);
+        }catch (NullPointerException e){
+            Alerts.blankDataAlert();
+        } catch (IncorrectDataException | NumberFormatException e) {
+            Alerts.incorrectData();
+        }
     }
-    public void checkValues(){
-            if(Objects.equals(vValueTextfield.getText(), "") ||
+
+    private int getWidth() {
+        return sleeperWidthCombobox.getValue();
+    }
+    private double getHeight(){
+        return Double.parseDouble(heightTextfield.getText());
+    }
+    private void checkOrdinateValues(){
+            if(vValueTextfield.getText().isEmpty() ||
             typeOfRailsCombobox.getValue() == null ||
             typeOfBallastCombobox.getValue() == null ||
             epureYkladkiCombobox.getValue() == null ||
                     !ironSleepersButton.isSelected() && !woodenSleepersButton.isSelected())
                 throw new NullPointerException();
+    }
+    private void checkAngleValues(){
+        if(heightTextfield.getText().isEmpty() || sleeperWidthCombobox.getValue() == null)
+            throw  new NullPointerException();
     }
 }

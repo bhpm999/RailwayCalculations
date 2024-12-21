@@ -24,17 +24,4 @@ public class Alerts {
         blankData.setTitle("Неверные данные");
         blankData.show();
     }
-    public static void confirmationAlert() throws CancellationException {
-        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION, "Вы уверены, " +
-                "что хотите выполнить действие?", ButtonType.YES, ButtonType.NO);
-        Optional<ButtonType> optional = confirm.showAndWait();
-        if (optional.get() == ButtonType.NO)
-            throw new CancellationException();
-    }
-    public static void isNotEditedAlert(){
-        Alert isNotEdited = new Alert(Alert.AlertType.ERROR,"Вы не изменили информацию",
-                ButtonType.OK);
-        isNotEdited.setTitle("Не изменённые данные");
-        isNotEdited.show();
-    }
 }
